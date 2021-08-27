@@ -2,16 +2,16 @@ import React,{useState,useEffect} from 'react';
 import APIService from '../Components/APIService'
 
 const Form = (props) => {
-    const [title, setTitle] = useState('');
-    const [body, setBody] = useState('');
+    const [title, setTitle] = useState('')
+    const [body, setBody] = useState('')
 
     useEffect(()=>{
       setTitle(props.article.title)
       setBody(props.article.body)
-    })
+    },[props.article])
 
     const updateArticle = () =>{
-      APIService.updateArticle(props.article.id,{title,body})
+      APIService.UpdateArticle(props.article.id,{title,body})
       .then(response => props.updatedData(response))
       .catch(error => console.log(error))
 

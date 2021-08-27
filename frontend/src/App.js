@@ -27,7 +27,7 @@ function App() {
 
   const updatedData=(article)=>{
     const new_article = articles.map(my_article=>{
-      if(my_article.id == article.id){
+      if(my_article.id === article.id){
         return article
       } else{
         return my_article
