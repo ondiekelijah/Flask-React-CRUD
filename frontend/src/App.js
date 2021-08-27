@@ -36,14 +36,55 @@ function App() {
     setArticles(new_article)
   }
 
+  const openForm = () =>{
+    setEditedArticle({title:'',body:''})
+  }
 
+  const insertedArticle = (article) =>{
+    const new_articles = [...articles,article]
+    setArticles(new_articles)
+  }
+
+  const deleteArticle = (article) =>{
+    const new_articles = articles.filter(myarticle=>{
+      if(myarticle.id === article.id){
+        return false;
+      }
+      return true
+    })
+
+    setArticles(new_articles)
+  }
 
   return (
-    <div className="App container">
-      <h1>React and Flask</h1>
+    <div className="App container m-3">
+    <div className="row">
+      <div className="col">
+      <h2>React and Flask</h2>
+      </div>
+      <div className="col">
+          <button 
+          className="btn btn-primary"
+          onClick={openForm}
+          >
+          Insert an article</button>
+      </div>
 
-      <ArticleList articles={articles} editArticle={editArticle}/>
-      { editedArticle ? <Form article = {editedArticle} updatedData={updatedData} />: null}
+    </div>
+
+      <ArticleList 
+      articles={articles} 
+      editArticle={editArticle}
+      deleteArticle={deleteArticle}
+      />
+
+      { editedArticle ? 
+      <Form 
+      article = {editedArticle} 
+      updatedData={updatedData}
+      insertedArticle={insertedArticle}
+      />
+      : null }
       
     </div>
   );

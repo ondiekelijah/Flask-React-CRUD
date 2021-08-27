@@ -1,10 +1,18 @@
 import React from 'react';
+import APIService from '../Components/APIService'
+
 
 const ArticleList = (props) => {
 
 	const editArticle=(article)=>{
 		props.editArticle(article)
 	}
+
+  const deleteArticle = (article)=>{
+    APIService.DeleteArticle(article.id)
+    .then(()=> props.deleteArticle(article))
+
+  }
 
     return (
         <div>
@@ -24,7 +32,12 @@ const ArticleList = (props) => {
     	      	</div>
 
     	      	<div className="col-sm-1">
-    	      		<button className="btn btn-danger">Delete</button>
+
+    	      		<button 
+                className="btn btn-danger"
+                onClick = {()=>deleteArticle(article)}
+                >Delete</button>
+
     	      	</div>
     	    </div>
     	    <hr/>
